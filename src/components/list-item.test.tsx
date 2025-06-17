@@ -45,7 +45,7 @@ describe('Componente ListItem', () => {
       />
     )
 
-    expect(screen.getByText(tituloInicial)).toBeInTheDocument()
+    expect(screen.queryByText(tituloInicial)).toBeTruthy()
 
     const checkbox = screen.getByRole('checkbox')
     expect(checkbox).toBeInTheDocument()
@@ -83,7 +83,7 @@ describe('Componente ListItem', () => {
     await userEvent.click(cancelButton)
 
     // Então o título original é exibido novamente e o input desaparece
-    expect(screen.getByText(tituloInicial)).toBeInTheDocument()
+    expect(screen.queryByText(tituloInicial)).toBeTruthy()
     expect(screen.queryByDisplayValue('Novo título não salvo')).not.toBeInTheDocument()
   })
 

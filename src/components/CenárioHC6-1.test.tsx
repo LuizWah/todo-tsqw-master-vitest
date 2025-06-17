@@ -58,7 +58,7 @@ describe('História de Usuário: Remover uma tarefa - HC6-1', () => {
     await user.type(input, novaTarefaTitulo);
     await user.click(addButton);
 
-    expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
+    expect(screen.queryByText(novaTarefaTitulo)).toBeTruthy();
  
     await user.click(removeButton);
     const listItems = screen.queryAllByRole('listitem');

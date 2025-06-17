@@ -58,7 +58,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
     await user.type(input, novaTarefaTitulo);
     await user.click(addButton);
 
-    expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
+    expect(screen.queryByText(novaTarefaTitulo)).toBeTruthy();
 
     const listItems = screen.queryAllByRole('listitem');
     expect(listItems.length).toBe(1);
@@ -101,7 +101,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
     await user.type(input, novaTarefaTitulo);
     await user.click(addButton);
  
-    expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
+    expect(screen.queryByText(novaTarefaTitulo)).toBeTruthy();
 
     const listItems = screen.queryAllByRole('listitem');
     expect(listItems.length).toBe(1);
@@ -123,7 +123,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
     await user.type(input, novaTarefaTitulo);
     await user.click(addButton);
 
-    expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
+    expect(screen.queryByText(novaTarefaTitulo)).toBeTruthy();
 
     const listItems = screen.queryAllByRole('listitem');
     expect(listItems.length).toBe(1);
@@ -145,7 +145,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
     await user.type(input, novaTarefaTitulo);
     await user.click(addButton);
 
-    expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
+    expect(screen.queryByText(novaTarefaTitulo)).toBeTruthy();
 
     const listItems = screen.queryAllByRole('listitem');
     expect(listItems.length).toBe(1);
