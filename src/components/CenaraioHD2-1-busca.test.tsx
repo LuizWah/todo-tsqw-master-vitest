@@ -83,7 +83,7 @@ describe('Endpoint para buscar tarefas por nome. HD2-1', () => {
 
   }, 25000);
 
-   it('Teste TC-03 - Buscar:  - Inpedir busca - ERRO', async () => {
+   it('Teste TC-03 - Buscar: " " - Inpedir busca - ERRO', async () => {
    renderWithTheme(<App />);
     const user = userEvent.setup();
 

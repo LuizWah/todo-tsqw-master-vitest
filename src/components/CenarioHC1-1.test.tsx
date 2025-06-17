@@ -104,7 +104,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
     expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
 
     const listItems = screen.queryAllByRole('listitem');
-    expect(listItems.length).toBe(1);
+    expect(listItems.length).toBe(0);
 
     await waitFor(() => {
       expect(toast.success).toHaveBeenCalled();

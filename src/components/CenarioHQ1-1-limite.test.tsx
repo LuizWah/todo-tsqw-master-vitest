@@ -30,6 +30,7 @@ vi.mock('react-hot-toast', () => {
 
 const renderWithTheme = (ui, { darkTheme = false } = {}) => {
   return render(
+    
     <ThemeContext.Provider value={{ darkTheme }}>{ui}</ThemeContext.Provider>,
   );
 };
@@ -47,7 +48,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
     toast.promise.mockClear();
   });
 
-  it('Teste TC_N: Adição de 101st Tarefa - Inserção negada', async () => {
+  it('Teste TC1-2: Adição de 101st Tarefa - Inserção negada', async () => {
     renderWithTheme(<App />);
     const user = userEvent.setup();
 
@@ -73,7 +74,7 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
 
   }, 60000);
 
-  it('Teste TC_N: Adição de 102nd Tarefa - Inserção negada', async () => {
+  it('Teste TC1-3: Adição de 102nd Tarefa - Inserção negada', async () => {
     renderWithTheme(<App />);
     const user = userEvent.setup();
 
@@ -98,13 +99,13 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
 
   }, 60000);
 
-    it('Teste TC_N: Adição de 100th Tarefa - Inserção permitida', async () => {
+    it('Teste TC1-1: Adição de 100th Tarefa - Inserção permitida', async () => {
     renderWithTheme(<App />);
     const user = userEvent.setup();
 
     const input = await screen.findByRole('textbox', { name: /Todo title/i }, { timeout: 20000 });
     const addButton = screen.getByRole('button', { name: /Add Todo/i });
-
+    
     const NUM_TASKS = 99;
 
     for (let i = 1; i <= NUM_TASKS; i++) {
@@ -122,4 +123,28 @@ describe('História de Usuário: Adicionar uma nova tarefa - Como usuário, quer
 
 
   }, 60000);
+
+     it('Teste TC1-4 - Adição de Tarefa com zero tarefas ja existentes - Permitida', async () => {
+    renderWithTheme(<App />);
+    const user = userEvent.setup();
+
+    const input = await screen.findByRole('textbox', { name: /Todo title/i }, { timeout: 20000 });
+    const addButton = screen.getByRole('button', { name: /Add Todo/i });
+
+    const novaTarefaTitulo = '1';
+
+    await user.type(input, novaTarefaTitulo);
+    await user.click(addButton);
+ 
+    expect(screen.getByText(novaTarefaTitulo)).toBeInTheDocument();
+
+    const listItems = screen.queryAllByRole('listitem');
+    expect(listItems.length).toBe(1);
+
+    await waitFor(() => {
+      expect(toast.success).toHaveBeenCalled();
+    });
+  }, 25000);
+
+
 });
