@@ -22,7 +22,7 @@ export default function App() {
   },[notes]);
   const [text, setText] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const MAX_NOTES = 3; // Defina o limite máximo de tarefas aqui
+  const MAX_NOTES = 100; // Defina o limite máximo de tarefas aqui
 
   // Loading state
   const [isLoading, setIsLoading] = useState(true);
