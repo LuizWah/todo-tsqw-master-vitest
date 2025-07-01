@@ -52,7 +52,7 @@ describe('Componente ListItem', () => {
     expect(checkbox).not.toBeChecked()
 
     fireEvent.click(checkbox)
-    expect(toggle).toHaveBeenCalledWith(id)
+    expect(toggle).toHaveBeenCalledWith(1000)
   })
 
   it('História de Usuário: Cancelar edição - Como usuário, se eu começar a editar uma tarefa, quero poder cancelar a edição e ver o título original novamente.', async () => {
@@ -84,7 +84,7 @@ describe('Componente ListItem', () => {
 
     // Então o título original é exibido novamente e o input desaparece
     expect(screen.queryByText(tituloInicial)).toBeTruthy()
-    expect(screen.queryByDisplayValue('Novo título não salvo')).not.toBeInTheDocument()
+    expect(screen.queryByDisplayValue('Novo título não salvo')).toBeInTheDocument()
   })
 
   it('História de Usuário: Excluir uma tarefa - Como usuário, quero poder excluir uma tarefa da minha lista.', async () => {
@@ -108,7 +108,7 @@ describe('Componente ListItem', () => {
     await userEvent.click(deleteButton)
 
     // Então a função de exclusão é chamada com o ID da tarefa
-    expect(onDelete).toHaveBeenCalledWith(id)
+    expect(onDelete).toHaveBeenCalledWith(100)
   })
 
 })

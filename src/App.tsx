@@ -58,6 +58,8 @@ export default function App() {
   }
 
   function handleSubmit(e) {
+    var start = new Date();
+    console.log(start);
     e.preventDefault(); // Prevent default form submission
     toast.promise(
       new Promise((resolve, reject) => {
@@ -67,21 +69,28 @@ export default function App() {
         }
         addNote(); 
         resolve(text); // Resolve com o texto da nota para usar no toast de sucesso
+        
       }),
       {
         loading: "Adding note...",
         success: (addedText) => <span>{`${addedText} Added!`}</span>,
         error: (err) => <span>{err.message || "Failed to add note"}</span>,
+        
       },
       {
         duration: 8000,
-      }
+      },
     );
     setText(""); // Limpa o campo de texto independentemente do resultado da promessa, ou pode ser movido para dentro do resolve.
+    var end = new Date();
+    console.log("time", end - start, "ms");
   }
   function handleDelete(id) {
+    var start = new Date();
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
     toast.success("Todo  Deleted!");
+    var end = new Date();
+    console.log("time", end - start, "ms");
   }
 
   function toggleNote(id) {
